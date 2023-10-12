@@ -1,0 +1,192 @@
+<style>
+        @import "compass/css3";
+     *, *:before, *:after {
+         box-sizing: border-box;
+    }
+     html {
+         overflow-y: scroll;
+    }
+     body {
+         background: #075a6c;
+         font-family: 'Titillium Web', sans-serif;
+    }
+     a {
+         text-decoration: none;
+         color: #1ab188;
+         transition: 0.5s ease;
+    }
+     a:hover {
+         color: #179b77;
+    }
+     .form {
+         background: rgba(6, 55, 92, 0.9);
+         padding: 40px;
+         max-width: 600px;
+         margin: 40px auto;
+         border-radius: 4px;
+         box-shadow: 0 4px 10px 4px rgba(19, 35, 47, .3);
+    }
+     .tab-group {
+         list-style: none;
+         padding: 0;
+         margin: 0 0 40px 0;
+    }
+     .tab-group:after {
+         content: "";
+         display: table;
+         clear: both;
+    }
+     .tab-group li a {
+         display: block;
+         text-decoration: none;
+         padding: 15px;
+         background: rgba(160, 179, 176, .25);
+         color: #a0b3b0;
+         font-size: 20px;
+         float: left;
+         width: 50%;
+         text-align: center;
+         cursor: pointer;
+         transition: 0.5s ease;
+    }
+     .tab-group li a:hover {
+         background: #179b77;
+         color: #fff;
+    }
+     .tab-group .active a {
+         background: #1ab188;
+         color: #fff;
+    }
+     .tab-content > div:last-child {
+         display: none;
+    }
+     h1 {
+         text-align: center;
+         color: #fff;
+         font-weight: 300;
+         margin: 0 0 40px;
+    }
+     label {
+         position: absolute;
+         transform: translateY(6px);
+         left: 13px;
+         color: rgba(255, 255, 255, .5);
+         transition: all 0.25s ease;
+         -webkit-backface-visibility: hidden;
+         pointer-events: none;
+         font-size: 22px;
+    }
+     label .req {
+         margin: 2px;
+         color: #1ab188;
+    }
+     label.active {
+         transform: translateY(50px);
+         left: 2px;
+         font-size: 14px;
+    }
+     label.active .req {
+         opacity: 0;
+    }
+     label.highlight {
+         color: #fff;
+    }
+     input, textarea {
+         font-size: 22px;
+         display: block;
+         width: 100%;
+         height: 100%;
+         padding: 5px 10px;
+         background: none;
+         background-image: none;
+         border: 1px solid #a0b3b0;
+         color: #fff;
+         border-radius: 0;
+         transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+     input:focus, textarea:focus {
+         outline: 0;
+         border-color: #1ab188;
+    }
+     textarea {
+         border: 2px solid #a0b3b0;
+         resize: vertical;
+    }
+     .field-wrap {
+         position: relative;
+         margin-bottom: 40px;
+    }
+     .top-row:after {
+         content: "";
+         display: table;
+         clear: both;
+    }
+     .top-row > div {
+         float: left;
+         width: 48%;
+         margin-right: 4%;
+    }
+     .top-row > div:last-child {
+         margin: 0;
+    }
+     .button {
+         border: 0;
+         outline: none;
+         border-radius: 0;
+         padding: 15px 0;
+         font-size: 2rem;
+         font-weight: 600;
+         text-transform: uppercase;
+         letter-spacing: 0.1em;
+         background: #b90808;
+         color: #fff;
+         transition: all 0.5s ease;
+         -webkit-appearance: none;
+    }
+     .button:hover, .button:focus {
+         background: #570404;
+    }
+     .button-block {
+         display: block;
+         width: 100%;
+    }
+     .forgot {
+         margin-top: -20px;
+         text-align: right;
+    }
+     
+    </style>
+<style>
+table {
+    margin-left:1cm;
+    margin-top:2cm;
+  border-collapse: collapse;
+  width: 95%;
+  background-color:white;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: black;
+}
+</style>
+
+<?php
+    $bdd = new PDO('mysql:host=localhost;dbname=stage', 'abonne_steg', 'mannoubi12345@');
+
+    $stmt = $bdd->query('SELECT * FROM bt_releveur');
+    $donne=$stmt->fetchAll();
+echo"<table border='5px'>";
+echo("<tr><td>BT_RELV_IDUTILISATEUR</td><td>BT_RELV_MATCLE</td><td>BT_RELV_MATRICULE</td><td>BT_RELV_NOM_PRENOM_AR</td><td>BT_RELV_NOM_PRENOM_FR</td><td>BT_RELV_UF_CODE</td><td>RC_UR_CODE</td><td>CF_AB_REF</td></tr>");
+foreach($donne as $v){
+    echo("<tr><td>".$v['BT_RELV_IDUTILISATEUR']."</td><td>".$v['BT_RELV_MATCLE']."</td><td>".$v['BT_RELV_MATRICULE']."</td><td>".$v['BT_RELV_NOM_PRENOM_AR']."</td><td>".$v['BT_RELV_NOM_PRENOM_FR']."</td><td>".$v['BT_RELV_UF_CODE']."</td><td>".$v['RC_UR_CODE']."</td><td>".$v['CF_AB_REF']."</td></tr>");
+}
+echo "</table>";
+
+ 
+?>
